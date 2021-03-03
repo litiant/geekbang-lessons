@@ -117,22 +117,16 @@ public class FrontControllerServlet extends HttpServlet {
                 StringUtils.replace(prefixPath, "//", "/"));
         // 映射到 Controller
         Controller controller = controllersMapping.get(requestMappingPath);
-
         if (controller != null) {
-
             HandlerMethodInfo handlerMethodInfo = handleMethodInfoMapping.get(requestMappingPath);
-
             try {
                 if (handlerMethodInfo != null) {
-
                     String httpMethod = request.getMethod();
-
                     if (!handlerMethodInfo.getSupportedHttpMethods().contains(httpMethod)) {
                         // HTTP 方法不支持
                         response.setStatus(HttpServletResponse.SC_METHOD_NOT_ALLOWED);
                         return;
                     }
-
                     if (controller instanceof PageController) {
                         PageController pageController = PageController.class.cast(controller);
                         String viewPath = pageController.execute(request, response);
@@ -151,7 +145,6 @@ public class FrontControllerServlet extends HttpServlet {
                     } else if (controller instanceof RestController) {
                         // TODO
                     }
-
                 }
             } catch (Throwable throwable) {
                 if (throwable.getCause() instanceof IOException) {
