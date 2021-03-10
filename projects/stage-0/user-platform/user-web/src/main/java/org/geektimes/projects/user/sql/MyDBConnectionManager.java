@@ -40,11 +40,11 @@ public class MyDBConnectionManager extends DBConnectionManager{
             Context context = new InitialContext();
             Context envContext = (Context) context.lookup("java:comp/env/");
             DataSource dataSource = (DataSource) envContext.lookup("jdbc/UserPlatformDB");
-            setConnection(dataSource.getConnection());
+//            setConnection(dataSource.getConnection());
         } catch (NamingException e) {
             e.printStackTrace();
-        } catch (SQLException e) {
-            e.printStackTrace();
+//        } catch (SQLException e) {
+//            e.printStackTrace();
         }
     }
 }

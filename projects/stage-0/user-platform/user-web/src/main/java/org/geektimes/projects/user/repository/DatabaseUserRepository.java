@@ -4,6 +4,9 @@ import org.geektimes.function.ThrowableFunction;
 import org.geektimes.projects.user.domain.User;
 import org.geektimes.projects.user.sql.DBConnectionManager;
 
+import javax.annotation.Resource;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
 import java.beans.BeanInfo;
 import java.beans.Introspector;
 import java.beans.PropertyDescriptor;
@@ -31,40 +34,25 @@ public class DatabaseUserRepository implements UserRepository {
 
     public static final String QUERY_ALL_USERS_DML_SQL = "SELECT id,name,password,email,phoneNumber FROM users";
 
-    private final DBConnectionManager dbConnectionManager;
+    @Resource(name = "bean/DBConnectionManager")
+    private DBConnectionManager dbConnectionManager;
 
-    public DatabaseUserRepository(DBConnectionManager dbConnectionManager) {
-        this.dbConnectionManager = dbConnectionManager;
+    public DatabaseUserRepository() {
+//        dbConnectionManager = ComponentContext.getInstance().getComponent("bean/DBConnectionManager");
     }
 
     private Connection getConnection() {
         return dbConnectionManager.getConnection();
     }
 
+    @Resource(name = "bean/EntityManager")
+    private EntityManager entityManager;
+
     @Override
     public boolean save(User user) {
-        Connection connection = getConnection();
-        PreparedStatement ps = null;
-        try {
-            connection.setAutoCommit(false);
-            ps = connection.prepareStatement(INSERT_USER_DML_SQL);
-            ps.setString(1, user.getName());
-            ps.setString(2, user.getPassword());
-            ps.setString(3, user.getEmail());
-            ps.setString(4, user.getPhoneNumber());
-            ps.executeUpdate();
-            connection.commit();
-        }catch(SQLException e){
-            e.printStackTrace();
-            return false;
-        }finally {
-            try {
-                ps.close();
-                connection.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
+        EntityTransaction transaction = entityManager.getTransaction();
+        user.setId(null);
+        entityManager.persist(user);
         return true;
     }
 

@@ -1,22 +1,44 @@
 package org.geektimes.projects.user.domain;
 
+import org.geektimes.projects.user.validator.bean.validation.PhoneValid;
+//import org.hibernate.validator.constraints.Length;
+
+import javax.persistence.*;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
+import java.io.Serializable;
 import java.util.Objects;
+
+import static javax.persistence.GenerationType.AUTO;
 
 /**
  * 用户领域对象
  *
  * @since 1.0
  */
-public class User {
+@Entity
+@Table(name = "USERS")
+public class User implements Serializable {
 
+    @Id
+    @GeneratedValue(strategy = AUTO)
+    @Min(value = 0)
     private Long id;
 
+    @Column
     private String name;
 
+    @Column
+    @NotBlank
+    @Size(min = 6, max = 32)
     private String password;
 
+    @Column
     private String email;
 
+    @PhoneValid
+    @Column
     private String phoneNumber;
 
     public Long getId() {
