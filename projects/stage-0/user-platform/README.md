@@ -1,3 +1,9 @@
+##第七周作业
+-  使用 Spring Boot 或者 Servlet 来实现一个 Gitee 的 OAuth2 认证
+
+详见 user-web 模块:
+org.geektimes.oauth
+
 
 ##第六周作业
 ###my-cache 模块
