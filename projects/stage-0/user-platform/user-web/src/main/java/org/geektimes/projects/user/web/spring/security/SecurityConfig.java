@@ -21,6 +21,7 @@ import org.springframework.core.annotation.Order;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.web.access.intercept.FilterSecurityInterceptor;
 
 /**
  * Spring Security 配置类
@@ -33,6 +34,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @Order(10000)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
+    @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
         // 开启
 //        httpSecurity.csrf();
@@ -41,6 +43,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         httpSecurity.authorizeRequests().antMatchers("/hello").authenticated();
     }
 
+    @Override
     public void configure(WebSecurity webSecurity) throws Exception {
 //        webSecurity.securityInterceptor()
     }
@@ -53,9 +56,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             //共享变量
             web.setSharedObject(HttpSecurity.class,http);
         }
+        HttpSecurity finalHttp = http;
         web.addSecurityFilterChainBuilder(http).postBuildAction(() -> {
-            FilterSecurityInterceptor securityInterceptor = http
-                    .getSharedObject(FilterSecurityInterceptor.class);
+            FilterSecurityInterceptor securityInterceptor = finalHttp.getSharedObject(FilterSecurityInterceptor.class);
             web.securityInterceptor(securityInterceptor);
         });
     }

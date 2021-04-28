@@ -33,6 +33,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @Order(9999)
 public class SecurityConfig2 extends WebSecurityConfigurerAdapter {
 
+    @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
         // 关闭
 //        httpSecurity.csrf().disable().formLogin();
@@ -40,10 +41,12 @@ public class SecurityConfig2 extends WebSecurityConfigurerAdapter {
         httpSecurity.authorizeRequests().antMatchers("/hello").permitAll();
     }
 
+    @Override
     public void configure(WebSecurity webSecurity) throws Exception {
 //        webSecurity.securityInterceptor()
     }
 
+    @Override
     public void init(WebSecurity web) throws Exception {
         HttpSecurity http = web.getSharedObject(HttpSecurity.class);
         configure(http);
