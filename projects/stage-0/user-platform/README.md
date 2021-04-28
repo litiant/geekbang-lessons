@@ -4,11 +4,9 @@
     - 背景：Spring Boot 场景下，自动装配以及自定义 Starter 方式非常流行，部分开发人员掌握了 Spring Security 配置方法，并且自定义了自己的实现，解决了 Order 的问题，然而会出现不确定配置因素。
   
 详见 user-web 模块：
-在小马哥代码基础上做了改动 
 org.geektimes.projects.user.web.spring.security
 
-
-
+---
 ##第七周作业
 -  使用 Spring Boot 或者 Servlet 来实现一个 Gitee 的 OAuth2 认证
 
