@@ -6,6 +6,8 @@ import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
 import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Set;
 
 public class BeanValidationDemo {
@@ -24,5 +26,7 @@ public class BeanValidationDemo {
         violations.forEach(c -> {
             System.out.println(c.getMessage());
         });
+
+        Collections.unmodifiableList(new ArrayList<>());
     }
 }

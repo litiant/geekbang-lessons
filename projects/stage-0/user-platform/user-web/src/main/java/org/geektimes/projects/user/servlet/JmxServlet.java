@@ -13,6 +13,9 @@ import java.io.IOException;
 import java.lang.management.ManagementFactory;
 
 
+/**
+ * @see @link http://localhost:8080/jolokia/read/jolokia:name=User
+ */
 public class JmxServlet extends HttpServlet {
 
     @Override
