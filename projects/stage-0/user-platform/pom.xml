@@ -22,6 +22,9 @@
         <module>user-data</module>
         <module>my-commons</module>
         <module>my-session</module>
+        <module>my-spring-cache</module>
+        <module>my-mybatis</module>
+        <module>my-hash</module>
     </modules>
 
     <properties>
