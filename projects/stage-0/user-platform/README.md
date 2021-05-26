@@ -1,3 +1,38 @@
+##第十二周作业
+作业：
+将上次 MyBatis@Enable 模块驱动，封装成 SpringBoot Starter 方式
+参考:MyBatis Spring Project 里面会有 Spring Boot 
+
+实现 user-
+在第十周作业基础上增加配置并通过 spring.factories（位置：resources/META-INF） 文件指明 Spring Boot自动装配类实现
+
+
+##第十一周作业
+通过 Java 实现两种 (以及) 更多的一致性 Hash 算法 (可选) 实现服务节点动态更新
+org.apache.dubbo.rpc.cluster.loadbalance.ConsistentHas hLoadBalance
+
+实现 my-hash
+
+##第十周作业
+完善
+@org.geektimes.projects.user.mybatis.annotation.Enable MyBatis 实现，尽可能多地注入 org.mybatis.spring.SqlSessionFactoryBean 中依赖的组件
+
+
+- 添加typeAliasesPackage、configurationProperties解析
+- 实现：org.geektimes.projects.user.mybatis.annotation.MyBatisBeanDefinitionRegistrar
+- 测试：org.geektimes.mybatis.EnableMyBatisTest
+
+
+##第九周作业
+Spring Cache 与 Redis 整合
+- 如何清除某个 Spring Cache 所有的 Keys 关联的对象
+    - 如果 Redis 中心化方案，Redis + Sentinel
+    - 如果 Redis 去中心化方案，Redis Cluster
+- 如何将 RedisCacheManager 与 @Cacheable 注解打通
+
+
+
+
 ##第八周作业
 - 如何解决多个 WebSecurityConfigurerAdapter Bean 配置相互冲突的问题？  
     - 提示：假设有两个 WebSecurityConfigurerAdapter Bean 定义，并且标注了不同的 @Order，其中一个关闭 CSRF，一个开启 CSRF，那么最终结果如何确定？
