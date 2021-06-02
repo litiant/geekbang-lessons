@@ -1,3 +1,13 @@
+##第十三周作业
+作业：
+基于文件系统为 Spring Cloud 提供 PropertySourceLocator 实现
+配置文件命名规则 (META-INF/config/default.properties 或者 META-INF/config/default.yaml)
+
+实现：my-spring-cloud
+本次作业参考小马哥《小马哥讲Spring核心编程思想》中（DynamicResourceMessageSource）关于监控文件变化的代码
+及 org.springframework.cloud.config.client.ConfigServicePropertySourceLocator
+
+
 ##第十二周作业
 作业：
 将上次 MyBatis@Enable 模块驱动，封装成 SpringBoot Starter 方式
